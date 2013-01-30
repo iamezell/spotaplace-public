@@ -1,0 +1,231 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet/less" href="less/style.less">
+  <script src="js/libs/less-1.3.0.min.js"></script>
+  
+  <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
+  to style.css, and replace the 2 lines above by this one:
+
+  <link rel="stylesheet" href="less/style.css">
+-->
+
+<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Spot<span style="color:#ff8500;">a</span>place</a>
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i> <span class="userName"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Sign Out</a></li>
+          </ul>
+        </div>  
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li>
+
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+      <div class="active item">
+            <img src="img/SiteHeader.jpg">
+          </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span3 well">
+        <ul class="nav nav-list">
+          <li class="nav-header"></li>
+          <li>
+            <a href="home.html">
+              <i class="icon-home"></i>
+              home
+            </a>
+          </li>
+          <li>
+            <a href="request.html">
+              <i class="icon-comment"></i>
+              request
+            </a>
+          </li>
+          <li>
+            <a href="auctions.html">
+              <i class="icon-gift"></i>
+              auctions
+            </a>
+          </li>
+          <li>
+            <a href="profile.html">
+              <i class="icon-user"></i>
+              profile
+            </a>
+          </li>
+          <li>
+            <a href="invite.html">
+              <i class="icon-star"></i>
+                  invite friends
+            </a>
+          </li>
+          <li class="active">
+            <a href="#">
+              <i class="icon-tags"></i>
+              register a business
+            </a>
+          </li>
+        </ul>
+
+      </div>
+      <div class="span9 row">
+        <form class="well span5 first" action="php/signup.php" method="post">
+          <fieldset>
+            <legend>
+              Register a Business  
+            </legend> 
+            <lable>Name of Business</lable>
+            <input type="text" class="span10" name="name_of_bizz" value="" placeHolder="business name"></input>
+            <hr>
+            <lable>Products</lable>
+            
+            <hr>
+            <input type="checkbox" name="industry[]" value="1">appliances<br>
+            <input type="checkbox" name="industry[]" value="2">auto parts<br>
+            <input type="checkbox" name="industry[]" value="3">babies_kids<br>
+            <input type="checkbox" name="industry[]" value="4">books<br>
+            <input type="checkbox" name="industry[]" value="5">Cameras<br>
+            <input type="checkbox" name="industry[]" value="6">clothings<br>
+            <input type="checkbox" name="industry[]" value="7">computers<br>
+            <input type="checkbox" name="industry[]" value="8">electronics<br>
+            <input type="checkbox" name="industry[]" value="9">flowers angifts<br>
+            <input type="checkbox" name="industry[]" value="10">furniture<br>
+            <input type="checkbox" name="industry[]" value="11">grocery or gourmet<br>
+            <input type="checkbox" name="industry[]" value="12">health and beauty<br>
+            <input type="checkbox" name="industry[]" value="13">indoor living<br>
+            <input type="checkbox" name="industry[]" value="14">software<br>
+            <input type="checkbox" name="industry[]" value="15">sporting goods<br>
+            <input type="checkbox" name="industry[]" value="16">toys<br>
+            <input type="checkbox" name="industry[]" value="17">video games<br>
+            <hr>
+            Services
+            <hr>
+            <input type="checkbox" name="industry[]" value="18">Love Services<br>
+            <input type="checkbox" name="industry[]" value="19">Repair Services<br>
+            <input type="checkbox" name="industry[]" value="20">Children Services<br>
+            <input type="checkbox" name="industry[]" value="21">Medical Services<br>
+            <input type="checkbox" name="industry[]" value="22">Food Services<br>
+            <input type="checkbox" name="industry[]" value="23">Rental Services<br>
+            <hr>
+            <lable>State</lable>
+            <input type="text" name="state" class="span10" value="" placeHolder=""></input>
+            <lable>City</lable>
+            <input type="text" name"city" class="span10" value="" placeHolder=""></input>
+            <lable>Street Number</lable>
+            <input type="text" name="streetNum" class="span10" value="" placeHolder=""></input>
+            <lable>Street</lable>
+            <input type="text" name="street" class="span10" value="" placeHolder=""></input> 
+            <lable>Zip</lable>
+            <input type="text" name="zip" class="span10" value="" placeHolder=""></input>
+            <lable>Email</lable>
+            <input type="text" name="email" class="span10" value="" placeHolder=""></input>
+            <lable>Fax</lable>
+            <input type="text" name="fax" class="span10" value="" placeHolder=""></input>
+            <lable>Phone</lable>
+            <input type="text" name="phone" class="span10" value="" placeHolder=""></input>
+            <lable>Website</lable>
+            <input type="text" name="website" class="span10" value="" placeHolder=""></input>
+             <input type="hidden" class="span14 id" name="id" value="" />
+            <lable>Describe Your Business</label>
+              <textarea name="textarea" class="span14 state" id="textarea" cols="45" rows="5"></textarea>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+          </form>
+         <!--  <form class="well span5 last" action="php/upload_user_avatar.php" method="post"
+          enctype="multipart/form-data">
+          <fieldset>
+            <legend>Upload a Avatar Pic for your Business </legend>
+            <input type="file" name="file" id="file" /> 
+            <br />
+            <input type="hidden" class="span10 id" name="id" value="" />
+            <input type="submit" class="btn btn-primary" name="submit" value="Submit" />
+          </form> -->
+        </div>    
+
+      </div>
+      <hr>
+
+      <footer>
+        <p>&copy; spotaplace.com 2012</p>
+      </footer>
+
+
+    </div> <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+    <script type="text/javascript"> 
+
+    $(document).ready(function(){
+      $('.carousel').carousel();
+      $(".userName").html(localStorage.name);
+       $(".id").attr("value",localStorage.id);
+                
+ if(localStorage.hasBusiness == 1){
+              $(".nav-list").append('<li><a href="business_dashboard.php"><i class="icon-tags"></i>business dashboard</a></li>');
+
+            }
+           
+
+});
+
+</script>
+
+<!-- scripts concatenated and minified via ant build script-->
+<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+
+<script src="js/script.js"></script>
+<!-- end scripts-->
+
+<script>
+var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>

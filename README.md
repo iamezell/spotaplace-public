@@ -1,4 +1,4 @@
-spotaplace-public
-=================
+SpotaplaceVersion2
+==================
 
-public version of spotaplace for code sample
+Spotaplace new website version

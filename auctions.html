@@ -1,0 +1,384 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="text/stylesheet" href="css/jquery.countdown.css">
+  <link rel="stylesheet/less" href="less/style.less">
+  <script src="http://js.pusher.com/1.11/pusher.min.js"></script>
+  <script src="js/libs/less-1.3.0.min.js"></script>
+  
+  <!-- Use SimpLESS (Win/Linux/Mac) or LESS.app (Mac) to compile your .less files
+  to style.css, and replace the 2 lines above by this one:
+-->
+<link rel="stylesheet" href="less/style.css">
+
+<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+
+
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Spot<span style="color:#ff8500;">a</span>place</a>
+        <div class="btn-group pull-right">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user"></i> <span class="userName"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="signout" href="index.html">Sign Out</a></li>
+          </ul>
+        </div>  
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="about.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li>
+
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+     <div class="active item">
+      <img src="img/SiteHeader.jpg">
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span3 well">
+      <ul class="nav nav-list">
+        <li class="nav-header"></li>
+        <li>
+          <a href="home.html">
+            <i class="icon-home"></i>
+            home
+          </a>
+        </li>
+        <li>
+          <a href="request.html">
+            <i class="icon-comment"></i>
+            request
+          </a>
+        </li>
+        <li class="active">
+        <a href="#">
+          <i class="icon-gift"></i>
+          auctions
+        </a>
+      </li>
+      <li>
+        <a href="profile.html">
+          <i class="icon-user"></i>
+          profile
+        </a>
+      </li>
+      <li>
+            <a href="invite.html">
+              <i class="icon-star"></i>
+                  invite friends
+            </a>
+          </li>
+      <li>
+        <a href="businessInfo.html">
+          <i class="icon-tags"></i>
+          register a business
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="span9 contents">
+    <div class="remContent">
+      <h1>These are your active requests</h1>
+      <hr>
+
+      <ul class="thumbnails">
+      </ul>
+    </div>
+  </div>    
+
+</div>
+<hr>
+
+<footer>
+  <p>&copy; spotaplace.com 2013</p>
+</footer>
+
+
+</div> <!-- /container -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+<script type="text/javascript"> 
+
+$(document).ready(function(){
+ $(".signout").click(function(){
+   localStorage.in=0;
+ });
+
+ var id = localStorage.id;
+ var timing;
+ if(localStorage.hasBusiness == 1){
+  $(".nav-list").append('<li><a href="business_dashboard.php"><i class="icon-tags"></i>business dashboard</a></li>');
+
+}
+localStorage.id;
+$(".userName").html(localStorage.name);
+function getAucs(){
+ $.post("php/getAuctions.php", {"id":id},function(data){
+   obj = jQuery.parseJSON(data);
+   user = jQuery.parseJSON(obj);
+
+   for(var i=0; i < obj.length; i++){
+
+
+    var requestsDiv = [
+    '<li class="span3">',
+    '<div class="thumbnail">',
+    '<img src="http://placehold.it/260x180" alt="">',
+    '<div class="caption">',
+    '<p>"'+obj[i]["message_body"]+'"</p>',
+    '<p>',
+    '<form class="well" action="javascript:void(0);">',
+    '<input type="hidden" class="span14 id" name="request_id" value="'+obj[i]["request_id"]+'" />',
+    '<input type="hidden" class="span14 id" name="chanel" value="'+obj[i]["chanel"]+'" />',
+    '<input type="hidden" class="span14 id" name="active" value="'+obj[i]["active"]+'" />',
+    '<input type="hidden" class="span14 id" name="commingFrom" value="'+obj[i]["comingFrom"]+'" />',
+    '<button type="submit" class="btn btn-info">Go to Auction</button>',
+    '</form>',  
+    '</p>',
+    '</div>',
+    '</div>',
+    '</li>'
+    ].join('');
+    $(".contents ul")[0].innerHTML += requestsDiv;
+  }
+
+
+});
+}
+$.post("php/getAuctions.php", {"id":id},function(data){
+
+  obj = jQuery.parseJSON(data);
+  user = jQuery.parseJSON(obj);
+  //we need to rap this request up just in case there is nothing to be returned
+  //ok null is comming back we need to check for that and if that is comming back we need to 
+  // tell the user that is whats happening
+
+  if(obj === null)
+  {
+
+    $(".remContent").html('<h1>There are no active requests yet.</h1>');
+  }else{
+    console.log(obj);
+    for(var i=0; i < obj.length; i++){
+
+
+
+      var requestsDiv = [
+      '<li class="span3">',
+      '<div class="thumbnail">',
+      '<img src="http://placehold.it/260x180" alt="">',
+      '<div class="caption">',
+      '<p>"'+obj[i]["message_body"]+'"</p>',
+      '<p>',
+      '<form class="well" action="javascript:void(0);">',
+      '<input type="hidden" class="span14 requestDiv_id" name="request_id" value="'+obj[i]["request_id"]+'" />',
+      '<input type="hidden" class="span14 requestDiv_chanel" name="chanel" value="'+obj[i]["chanel"]+'" />',
+      '<input type="hidden" class="span14 requestDiv_active" name="active" value="'+obj[i]["active"]+'" />',
+      '<input type="hidden" class="span14 requestDiv_time" name="time" value="'+obj[i]["time_committed"]+'" />',    
+      '<button type="submit" class="btn btn-info">Go to Auction</button>',
+      '</form>',  
+      '</p>',
+      '</div>',
+      '</div>',
+      '</li>'
+      ].join('');
+      $(".contents ul")[0].innerHTML += requestsDiv;
+    }
+
+    $("form").on("click",function(event){
+      var form = $(this);
+      var request_id = $(form[0].firstChild).attr("value");
+      //lets make a call to get the actual data
+      var chanel = form.find('.requestDiv_chanel').attr('value');
+      var timing = $(form[0].firstChild.nextSibling.nextSibling.nextSibling).attr("value");
+      // alert(timing);
+      $.post("php/getBids.php", {"id":request_id},function(data){
+        obj1 = jQuery.parseJSON(data);
+        if(obj1 == "there is no match")
+        {
+          alert("there are no bids yet");
+        }else{
+          //ok let get rid of the div
+          //alert(obj1[0]["bid_proposal"]);
+          $("body").append('<span class="label label-important timer" style="position:fixed; top:150px; "></span>');
+          $(".timer").toggle();
+          $(".remContent").toggle();
+          for(var i=0; i < obj1.length; i++){
+            var divComp = [ 
+            '<div class="well span8">',
+            '<div class="row">',
+            '<div class="span4" style="margin-left:25px;  margin-right:25px;">',
+            '<img src="/img/avatars/default.jpg" height="117" width="210">',
+            '</div>',
+            '<div class="span6">',
+            '<p>Name: ',obj1[i]["name_of_business"],'<p>',
+            '<p>Email: ',obj1[i]["email_1"],'<p>',
+            '<p>Website: ',obj1[i]["website"],'<p>',
+            '<p>Phone Number : ',obj1[i]["phone"],'<p>',
+            '<p>Email: ',obj1[i]["price"],'<p>',
+            '<p>Votes Up: ',obj1[i]["price"],'<p>',
+            '<p>Votes Down: ',obj1[i]["price"],'<p>',
+            '<p>Reviews: ',obj1[i]["price"],'<p>',
+            '<form action="javascript:void(0);" method="get">',
+            '<input type="hidden" class="span14 requestIt" name="request_id" value="'+obj1[i]["request_id"]+'" />',
+            '<input type="hidden" class="span14 requestIt" name="bid_id" value="'+obj1[i]["bid_id"]+'" />',
+            '<input type="hidden" class="span14 business_id" name="business_id" value="'+obj1[i]["business_id"]+'" />',
+            '<button type="submit" class="vendorInfoBtn btn btn-info" rel="popover" data-content="Find out more about this vendor" data-original-title="Make an informed descision">Vendor Info</button>',
+            '<button type="submit" class="soldBtn btn btn-success" rel="popover" data-content="If you like the deal thats being made, press this button to choose the winner" data-original-title="Choose This Vendor">Sold!!</button>',
+
+            '</form>',
+
+            '</div>',
+            '</div>',
+            '<hr>',
+            '<p>',obj1[i]["bid_proposal"],'</p>',
+            '</div>'
+            ].join('');
+            $(".contents")[0].innerHTML += divComp;
+          }
+          var pusher = new Pusher('ae1f5dcd397b352ab651');
+
+          var thingChannel = pusher.subscribe(chanel);
+          
+          thingChannel.bind('thing_create', function(data1) {
+              console.log(JSON.parse(data1));
+            if(JSON.parse(data1).isActive == false){
+              alert("Auction is closed");
+            }else{
+              var divComp2 = [ 
+              '<div class="well span8">',
+              '<div class="row">',
+              '<div class="span4" style="margin-left:25px;  margin-right:25px;">',
+              '<img src="/img/avatars/default.jpg" height="117" width="210">',
+              '</div>',
+              '<div class="span6">',
+              '<p>Name: ',JSON.parse(data1).name_of_business,'<p>',
+              '<p>Email: ',JSON.parse(data1).email_1,'<p>',
+              '<p>Website: ',JSON.parse(data1).website,'<p>',
+              '<p>Phone Number : ',JSON.parse(data1).phone,'<p>',
+              '<p>Email: ',JSON.parse(data1).price,'<p>',
+              '<p>Votes Up: ',JSON.parse(data1).price,'<p>',
+              '<p>Votes Down: ',JSON.parse(data1).price,'<p>',
+              '<p>Reviews: ',JSON.parse(data1).price,'<p>',
+              '<form action="javascript:void(0)">',
+                '<input type="hidden" class="span14 requestIt" name="request_id" value="'+JSON.parse(data1).request_id+'" />',
+              '<input type="hidden" class="span14 requestIt business_id" name="biz_id" value="'+JSON.parse(data1).biz_id+'" />',
+              '<button class="vendorInfoBtn btn btn-info" rel="popover" data-content="Find out more about this vendor" data-original-title="Make an informed descision">Vendor Info</button>',
+              '<button class="soldBtn btn btn-success" rel="popover" data-content="If you like the deal thats being made, press this button to choose the winner" data-original-title="Choose This Vendor">Sold!!</button>',
+
+              '</form>',
+
+              '</div>',
+              '</div>',
+              '<hr>',
+              '<p>',JSON.parse(data1).description,'</p>',
+              '</div>'
+              ].join('');
+              $($(".contents")[0]).prepend(divComp2);
+            }
+          });
+
+}
+
+        //$("body").append('<button class="btn btn-info" style="position:fixed; top:100px;" >Bid!</button>');
+
+        $('.vendorInfoBtn, .soldBtn').on('click', function(e){
+           $clickedButton = $(this);
+            $currentForm = $clickedButton.parent('form');
+           
+           
+            //console.log($clickedButton);
+          localStorage.currentVendor = $currentForm.find('.business_id').attr('value')
+             if ($clickedButton.hasClass('soldBtn')) {
+              //$currentForm.attr('action', 'php/auctionDone.php');
+             window.location.href = "auction_done.html";
+
+            } else if ($clickedButton.hasClass('vendorInfoBtn')) {
+                // $currentForm.attr('action', 'php/vendorInfo.php');
+               window.location.href = "vendorinfo.html";
+            }
+        });
+
+        $('.soldBtn').popover();
+        $('.vendorInfoBtn ').popover();
+        var time = new Date(timing);
+
+        $('.timer').countdown({
+          until:time,
+          compact: true
+        });
+        $(".timer").toggle();
+
+      });
+
+});
+
+
+}
+
+
+
+
+})
+
+
+
+});
+
+</script>
+
+<!-- scripts concatenated and minified via ant build script-->
+<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.countdown.js"></script>
+
+<script src="js/script.js"></script>
+<!-- end scripts-->
+
+<script>
+var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
