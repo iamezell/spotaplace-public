@@ -451,10 +451,9 @@
 		global $API_Endpoint, $API_UserName, $API_Password, $API_Signature, $API_AppID;
 		global $USE_PROXY, $PROXY_HOST, $PROXY_PORT;
 
-		$API_Endpoint .= "/" . $methodName;
 		//setting the curl parameters.
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL,$API_Endpoint);
+		curl_setopt($ch, CURLOPT_URL,"$API_Endpoint/$methodName");
 		curl_setopt($ch, CURLOPT_VERBOSE, 1);
 
 		//turning off the server and peer verification(TrustManager Concept).
